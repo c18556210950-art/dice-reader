@@ -1,0 +1,20 @@
+/* BYOK page additions on top of style.css */
+header .back-link,.byok-link{color:var(--gold);font-size:12px;text-decoration:none}
+header .back-link:hover,.byok-link:hover{text-decoration:underline}
+.byok-workspace{grid-template-columns:minmax(0,1.1fr) minmax(0,1fr)}
+.config{display:grid;gap:11px}
+.field{display:grid;gap:4px;font-size:11px;color:var(--muted)}
+.field>span:first-child{color:#aeb7a5}
+.field input,.field select{width:100%;border:1px solid #3e473a;border-radius:7px;background:#121612;color:var(--text);padding:9px 10px;font-size:13px}
+.field input:focus,.field select:focus{outline:1px solid var(--gold);border-color:var(--gold)}
+.key-wrap{display:flex;gap:6px;align-items:center}
+.key-wrap input{flex:1;min-width:0}
+.key-wrap .text-button{white-space:nowrap;padding:0 4px}
+.remember{display:flex;align-items:center;gap:6px;font-size:11px;color:var(--muted)}
+.key-note{margin:0;font-size:10px;color:#8e9988;line-height:1.7}
+.photo-heading{margin-top:20px}
+.photo-heading>span{display:flex;gap:8px}
+.byok-workspace .dropzone{min-height:230px}
+.byok-workspace .camera-row{margin-top:10px}
+.results-panel .empty{padding:24px 0}
+@media(max-width:900px){.byok-workspace{grid-template-columns:1fr}}

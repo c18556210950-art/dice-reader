@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>骰盘 · 自带 API</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="byok.css">
+</head>
+<body>
+<header><a class="brand" href="../">⬡ <span>骰盘</span><small>BYOK</small></a><a class="back-link" href="../">← 返回服务器版</a></header>
+<main>
+  <div class="intro">
+    <p class="eyebrow">BRING YOUR OWN KEY</p>
+    <h1>用你自己的 <span>API</span> 读骰。</h1>
+    <p>密钥只保存在这个浏览器，识别请求直接发往你选择的服务商，不经过本站服务器。</p>
+  </div>
+  <div class="workspace byok-workspace">
+    <section class="photo-panel">
+      <div class="panel-heading"><h2>01 <span>连接模型</span></h2><button id="clear-key" class="text-button">清除密钥</button></div>
+      <div class="config">
+        <label class="field"><span>服务商</span><select id="provider"></select></label>
+        <label class="field"><span>API 地址</span><input id="base-url" type="url" spellcheck="false" placeholder="https://api.example.com/v1"></label>
+        <label class="field"><span>API Key</span><span class="key-wrap"><input id="api-key" type="password" autocomplete="off" spellcheck="false" placeholder="sk-..."><button id="key-toggle" class="text-button" type="button">显示</button></span></label>
+        <label class="field"><span>模型</span><input id="model" list="model-list" spellcheck="false" placeholder="模型名称"><datalist id="model-list"></datalist></label>
+        <label class="remember"><input id="remember" type="checkbox"> 在本浏览器记住密钥（localStorage）</label>
+        <p class="key-note">密钥不会发给本站服务器；勾选后会明文保存在浏览器里，公共电脑请勿勾选。</p>
+        <p class="key-note">每张照片会先发整图定位，再为每颗骰子发一张裁剪图复核；请求直接发往所选服务商并按你的账户计费。</p>
+      </div>
+
+      <div class="panel-heading photo-heading"><h2>02 <span>你的骰盘</span></h2><span><button id="rerun" class="text-button" hidden>重新识别</button> <button id="replace" class="text-button" hidden>更换照片</button></span></div>
+      <label class="dropzone" id="dropzone" for="file" tabindex="0"><span class="dice-icon">⬡</span><strong>放入一张骰盘照片</strong><span>点击选择，或将图片拖到这里</span><small>JPG / PNG / WebP · 最大 15 MB</small><span class="upload-pill">选择照片</span></label>
+      <input id="file" type="file" accept="image/jpeg,image/png,image/webp" hidden>
+      <input id="camera-file" type="file" accept="image/*" capture="environment" hidden>
+      <div class="camera-row"><button id="camera" class="secondary camera">📷 拍照识别</button><span>拍照或选择照片后自动识别</span></div>
+      <div id="preview" hidden><div class="image-wrap"><img id="photo" alt="上传的骰盘照片"><div id="markers"></div></div><p class="caption">尽量正上方拍摄，让骰子平放、数字清晰。标记位置由模型估计，请核对是否遗漏。</p></div>
+      <div class="options"><label for="d4">d4 读数方式</label><select id="d4"><option value="auto">自动判断（不确定则留空）</option><option value="top">读顶端数字</option><option value="bottom">读底边数字</option></select></div>
+      <p id="status" class="status" role="status" aria-live="polite">请填写 API Key 和模型</p>
+    </section>
+
+    <section class="results-panel">
+      <div class="panel-heading"><h2>03 <span>投掷结果</span></h2><span id="count" class="badge">0 颗骰子</span></div>
+      <div class="total-card"><span id="sum-label">等待投掷</span><strong id="sum">—</strong><p id="sum-detail">每一场冒险，都从一次投掷开始。</p><div id="pairing" class="pairing" hidden></div></div>
+      <p id="warning" class="warning" hidden></p>
+      <div id="empty" class="empty">识别结果会显示在这里。<br><small>你也可以手动添加骰子。</small></div>
+      <div id="rows"></div>
+      <div class="result-actions"><button id="add" class="secondary">＋ 手动添加</button><button id="confirm-all" class="secondary" disabled>全部核对无误</button></div>
+      <p class="footnote">支持 d4 · d6 · d8 · d10 · d12 · d20 · 百分位骰<br>百分位骰会自动与一颗 d10 配对为 d100 并计入总和（00 + 0 = 100）。<br>BYOK 模式：照片和密钥只在你与服务商之间传递，本站服务器只提供页面文件。</p>
+    </section>
+  </div>
+  <footer><span>密钥不经过本站服务器 · 费用由你的 API 账户承担</span><a class="byok-link" href="../">返回服务器版 →</a></footer>
+</main>
+<script src="pairing.js" defer></script><script src="byok.js" defer></script>
+</body></html>
