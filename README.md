@@ -1,5 +1,7 @@
 # 骰盘 · D&D Dice Reader
 
+[![tests](https://github.com/c18556210950-art/dice-reader/actions/workflows/tests.yml/badge.svg)](https://github.com/c18556210950-art/dice-reader/actions/workflows/tests.yml)
+
 用一张俯拍照片读取 D&D 骰盘上的每颗骰子，自动识别骰型与结果面，最后汇总总和。
 
 项目包含两条独立路径：
